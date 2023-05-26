@@ -1,13 +1,14 @@
-<form action="/records/{{record._id}}?_method=PUT" method="POST">
+<form action="/records/{{record._id}}/edit?_method=PUT" method="POST">
   <ul>
     名稱：<input class="form-control" type="text" placeholder="name" name="name" value="{{record.name}}" required>
   </ul>
   <ul>
-    日期：<input class="form-control" type="date" placeholder="date" name="date" value="{{record.date}}" required>
+    日期：<input type="date" name="date" class="form-control" id="date" min="1900-01-01" max="2100-12-31"
+    value="{{ record.date }}" required>
   </ul>
   <ul>
     <select name="categoryId" id="category" class="form-select" required>
-      <option selected disabled>選擇類別</option>
+      <option selected disabled>{{record.categoryId.name}}</option>
       {{#each categories}}
       <option value="{{this._id}}">{{this.name}}</option>
       {{/each}}
