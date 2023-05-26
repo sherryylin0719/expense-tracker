@@ -1,0 +1,23 @@
+<form action="/records/{{record._id}}?_method=PUT" method="POST">
+  <ul>
+    名稱：<input class="form-control" type="text" placeholder="name" name="name" value="{{record.name}}" required>
+  </ul>
+  <ul>
+    日期：<input class="form-control" type="date" placeholder="date" name="date" value="{{record.date}}" required>
+  </ul>
+  <ul>
+    <select name="categoryId" id="category" class="form-select" required>
+      <option selected disabled>選擇類別</option>
+      {{#each categories}}
+      <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+  </ul>
+  <ul>
+    金額：<input class="form-control" type="number" placeholder="amount" name="amount" min="1" value="{{record.amount}}" required>
+  </ul>
+  <div>
+    <button class="btn btn-outline-info mx-auto mt-3" type="submit">Save</button>
+  </div>
+</form>
+<a class="btn btn-outline-primary mx-auto mt-3" style="width: 14rem" href="/">返回首頁</a>
