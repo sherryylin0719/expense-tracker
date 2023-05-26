@@ -7,14 +7,17 @@
   <div>
     <div class="row flex-fill">
       <div class="col-md-12">
-        <div class="input-group mb-3">
-          <select class="form-select" id="category-select">
-            <option value="">類別</option>
-            {{#each categories}}
-            <option value="{{this._id}}">{{this.name}}</option>
-            {{/each}}
-          </select>
-          <button class="btn btn-primary" type="button" id="search-button">Search</button>
+        <div class="row input-group mb-3">
+          <form action="/" method="POST">
+            <select class="form-select" name="categoryId" id="categoryId" onchange="this.form.submit()"
+              aria-label="Default select example">
+              <option selected disabled>類別</option>
+              <option value="all">全部</option>
+              {{#each categories}}
+              <option value="{{this._id}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </form>
         </div>
       </div>
     </div>
