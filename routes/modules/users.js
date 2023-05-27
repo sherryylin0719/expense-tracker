@@ -4,13 +4,13 @@ const User = require('../../models/user')
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
 
-router.get("/login", (req, res) => {
-  res.render("login")
+router.get('/login', (req, res) => {
+  res.render('login')
 })
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login',
-  failureFlash: true,
+  failureFlash: true
 }))
 router.get('/register', (req, res) => {
   res.render('register')
@@ -21,16 +21,16 @@ router.post('/register', (req, res) => {
   const errors = []
   User.findOne({ email }).then(user => {
     if (user) {
-      errors.push({ message: "Email has already been registered" })
+      errors.push({ message: 'Email has already been registered' })
     }
-    if ( !email || !password || !confirmPassword) {
-      errors.push({ message: "All columns are required" })
+    if (!email || !password || !confirmPassword) {
+      errors.push({ message: 'All columns are required' })
     }
     if (password !== confirmPassword) {
       errors.push({ message: "Password doesn't match with Confirm Password" })
     }
     if (errors.length) {
-      return res.render("register", {
+      return res.render('register', {
         errors,
         name,
         email,
@@ -46,11 +46,11 @@ router.post('/register', (req, res) => {
           email,
           password: hash // 用雜湊值取代原本的使用者密碼
         }))
-        .then(() => res.redirect("/"))
+        .then(() => res.redirect('/'))
         .catch(err => console.log(err))
     }
   })
-  .catch(err => console.log(err))
+    .catch(err => console.log(err))
 })
 router.get('/logout', (req, res) => {
   req.logout()
